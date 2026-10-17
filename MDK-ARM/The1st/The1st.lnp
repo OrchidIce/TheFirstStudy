@@ -1,0 +1,22 @@
+--cpu Cortex-M3
+"the1st\startup_stm32f103xb.o"
+"the1st\main.o"
+"the1st\gpio.o"
+"the1st\stm32f1xx_it.o"
+"the1st\stm32f1xx_hal_msp.o"
+"the1st\stm32f1xx_hal_gpio_ex.o"
+"the1st\stm32f1xx_hal.o"
+"the1st\stm32f1xx_hal_rcc.o"
+"the1st\stm32f1xx_hal_rcc_ex.o"
+"the1st\stm32f1xx_hal_gpio.o"
+"the1st\stm32f1xx_hal_dma.o"
+"the1st\stm32f1xx_hal_cortex.o"
+"the1st\stm32f1xx_hal_pwr.o"
+"the1st\stm32f1xx_hal_flash.o"
+"the1st\stm32f1xx_hal_flash_ex.o"
+"the1st\stm32f1xx_hal_exti.o"
+"the1st\system_stm32f1xx.o"
+--strict --scatter "The1st\The1st.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "The1st.map" -o The1st\The1st.axf
