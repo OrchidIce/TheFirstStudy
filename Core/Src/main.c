@@ -87,7 +87,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+	//GPIO_PinState last_key_state = GPIO_PIN_RESET; 
+  //GPIO_PinState current_key_state;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -95,10 +96,34 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET); // ??(????)
-    HAL_Delay(500);                                        // ?500ms
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);   // ??(????)
-    HAL_Delay(500);  
+		//HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET); 
+		/*HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+		HAL_Delay(500);*/
+		if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_9)==GPIO_PIN_SET)
+			{
+				HAL_Delay(40);
+				if (HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_9)==GPIO_PIN_SET)
+				{
+					HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+					while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9) == GPIO_PIN_SET)
+					{
+					}
+          HAL_Delay(40);
+				}
+			}
+		/*current_key_state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9);
+    if (last_key_state == GPIO_PIN_RESET && current_key_state == GPIO_PIN_SET)
+    {
+        HAL_Delay(20); // ????
+        if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9) == GPIO_PIN_SET)
+        {
+            HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // ?? PC13 ??
+        }
+    }
+    
+    last_key_state = current_key_state;
+    
+    HAL_Delay(10); */
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
